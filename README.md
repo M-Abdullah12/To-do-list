@@ -31,12 +31,11 @@ Feel free to explore, copy, and learn from this project—it's a great hands-on 
 ## Project Structure
 ```
 ├── src
-│   ├── components
-│   │   └── ToDo.tsx    # The main To-Do List component
 │   ├── assets
 │   │   └── Images      # Images for icons like trash and checkmarks
-│   ├── App.tsx         # Main application
-│   └── index.tsx       # React entry point
+|   ├── ToDo.tsx        # To-do list componet 
+│   ├── main.tsx        # Main application
+│   └── index.css       # React entry point
 ├── public              # Static assets like HTML
 ├── package.json        # Project dependencies
 └── tailwind.config.js  # Tailwind CSS configuration
