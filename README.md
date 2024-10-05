@@ -1,50 +1,76 @@
-# React + TypeScript + Vite
+# To-Do List Web App (v3)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the third edition of a **To-Do List** web app built using **React**, **TypeScript**, and **Tailwind CSS**. Initially developed in JavaScript, this project evolved over time with bug fixes, feature additions, and technology shifts from **JavaScript** to **TypeScript** and **CSS** to **Tailwind CSS**.
 
-Currently, two official plugins are available:
+Feel free to explore, copy, and learn from this project—it's a great hands-on beginner project to help you get familiar with React, TypeScript, and Tailwind CSS!
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
+- Features
+- Technologies Used
+- Project Structure
+- How It Works
+- Local Setup
+- Usage
+- Future Improvements
 
-## Expanding the ESLint configuration
+## Features
+- **Persistent Data**: Tasks are saved in **localStorage**, ensuring they remain available even after refreshing or reopening the browser.
+- **Input Validations**: Prevents blank submissions and provides feedback if attempted.
+- **Task Management**: Users can:
+  - Add tasks via the "Add" button or by pressing **Enter**.
+  - Toggle task completion (done/not done) by clicking on the task.
+  - Remove tasks by clicking the trash/bin icon.
+- **Visual Feedback**: Tasks marked as "done" change from an empty circle icon to a ticked circle.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Technologies Used
+- **React**: Component-based structure for building dynamic UI.
+- **TypeScript**: Type-safe development and improved scalability.
+- **Tailwind CSS**: For styling the application with utility-first CSS classes.
+- **LocalStorage**: Storing task data and completion statuses persistently.
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Project Structure
+```
+├── src
+│   ├── components
+│   │   └── ToDo.tsx    # The main To-Do List component
+│   ├── assets
+│   │   └── Images      # Images for icons like trash and checkmarks
+│   ├── App.tsx         # Main application
+│   └── index.tsx       # React entry point
+├── public              # Static assets like HTML
+├── package.json        # Project dependencies
+└── tailwind.config.js  # Tailwind CSS configuration
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## How It Works
+1. **Task Addition**: Users can enter a task via the input field and either click the "Add" button or press **Enter** to add the task to the list.
+2. **Task Display**: All tasks are displayed in a list with options to mark as done/not done and delete.
+3. **Persistent Data**: Tasks and their done status are stored in the browser’s `localStorage`. Upon loading the app, stored tasks are retrieved and displayed.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### LocalStorage Handling:
+- `tasks`: Stores the array of task strings.
+- `status`: Stores the boolean values representing whether tasks are marked as done.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+  
+### Steps to Run Locally
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/M-Abdullah12/To-do-list.git
+   ```
+2. Install the dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm start
+   ```
+
+## Usage
+1. **Adding Tasks**: Type in the input field and click "Add" or press **Enter**.
+2. **Marking Tasks**: Click on any task to toggle between done/not done.
+3. **Deleting Tasks**: Click the trash icon to remove a task.
+
+## Future Improvements
+- **Task Editing**: Add a feature to edit tasks.
+- **Categories**: Group tasks into different categories (e.g., Work, Personal).
