@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from "react"
 import Todo from './assets/todo.png'
-import Trash from './assets/484662.png'
+import Trash_icon from './assets/484662.png'
 import checklogo from './assets/check-circle-solid-24.png'
 import circlelogo from './assets/circle-regular-24.png'
 
@@ -11,9 +11,8 @@ const ToDo = () => {
 
   const [Value, SetValue] = useState("")
   const [Items, SetItems] = useState<string[]>([])
-  const [Empty, SetEmpty] = useState(false)
+  const [Input_Empty, SetInput_Empty] = useState(false)
   const [Markedout, SetMarkedout] = useState<boolean[]>([])
-  console.log(Markedout)
 
 
   useLayoutEffect(() => {
@@ -40,16 +39,14 @@ const ToDo = () => {
       const newitems = [...Items, Value]
       SetItems(newitems)
       SetValue("")
-      SetEmpty(false)
+      SetInput_Empty(false)
       const newarray = [...Markedout,false]
       SetMarkedout(newarray)
       localStorage.setItem('tasks',JSON.stringify(newitems))
       localStorage.setItem('status',JSON.stringify(newarray))
-      
-
     }
     else{
-      SetEmpty(true)
+      SetInput_Empty(true)
     }
   }
 
@@ -97,14 +94,14 @@ const ToDo = () => {
           <div className="relative">
             <input onKeyDown={(e) => Entered(e)} value={Value} onChange={(e) => SetValue(e.target.value)} type="text" placeholder="Enter Item" className="rounded-xl w-full h-6 indent-3 end-6 pr-20  border-2 bg-gray-600 text-white focus:outline-none border-none shadow-none "/>
             <div  onClick={Handlesumbit} className="w-16 h-6 rounded-xl bg-orange-600 text-white absolute right-0 inline-block text-center font-bold z-50 hover:cursor-pointer">ADD</div>
-            <div className={Empty ? 'text-red-600 font-bold text-sm block' : 'hidden bg-red-600'}>Cannot be empty!</div>
+            <div className={Input_Empty ? 'text-red-600 font-bold text-sm block' : 'hidden bg-red-600'}>Cannot be empty!</div>
           </div>
           <div className="mt-10 mb-3">
             {Items.map((value: string, index: number) =><div key={index} className="flex justify-between items-center h-5 mt-3">
               <img  key={index} src={Markedout[index]? checklogo: circlelogo}/>
-              <span onClick={(e) => Markout(index)} className=" inline-block w-4/5 text-black hover:cursor-pointer">{value}</span>
+              <span onClick={() => Markout(index)} className=" inline-block w-4/5 text-black hover:cursor-pointer">{value}</span>
               <div onClick={() => Handleremove(index)} className="inline-block rounded-full hover:bg-gray-400 p-2">
-              <img className="w-4" src={Trash}/></div></div>) }
+              <img className="w-4" src={Trash_icon}/></div></div>) }
           </div>
         </div>
       </div>
