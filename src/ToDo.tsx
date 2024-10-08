@@ -75,17 +75,12 @@ const ToDo = () => {
 
   const Markout = (index:number) => {
     let updatedarray = [...Markedout]
-    if (updatedarray[index] === false) {
-      updatedarray[index] = true
-      localStorage.setItem('status',JSON.stringify(updatedarray))
-      SetMarkedout(updatedarray)
-    } else {
-      updatedarray[index] = false
-      localStorage.setItem('status',JSON.stringify(updatedarray))
-      SetMarkedout(updatedarray)
-    }
-  }
+    updatedarray[index] = !updatedarray[index]
 
+    SetMarkedout(updatedarray)
+    localStorage.setItem('status', JSON.stringify(updatedarray))
+  }
+  
   return (
     <div className="flex flex-col bg-slate-950 w-dvw h-full min-h-dvh">
       <div className="grow flex justify-center items-center">
