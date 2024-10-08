@@ -71,5 +71,4 @@ Feel free to explore, copy, and learn from this project—it's a great hands-on 
 3. **Deleting Tasks**: Click the trash icon to remove a task.
 
 ## Future Improvements
-- **Task Editing**: Add a feature to edit tasks.
 - **Categories**: Group tasks into different categories (e.g., Work, Personal).
