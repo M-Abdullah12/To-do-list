@@ -3,16 +3,20 @@ import Todo from './assets/todo.png'
 import Trash_icon from './assets/484662.png'
 import checklogo from './assets/check-circle-solid-24.png'
 import circlelogo from './assets/circle-regular-24.png'
+import edit_icon from './assets/edit-solid-24.png'
+import Edittask from './Edittask'
 
 const ToDo = () => {
 
   document.title = "To-Do-List"
   
 
-  const [Value, SetValue] = useState("")
+  const [Value, SetValue] = useState<string>("")
   const [Items, SetItems] = useState<string[]>([])
   const [Input_Empty, SetInput_Empty] = useState(false)
   const [Markedout, SetMarkedout] = useState<boolean[]>([])
+  const [position, setposition] = useState<number>(0)
+  const [edit,setedit] = useState<boolean>(false)
 
 
   useLayoutEffect(() => {
@@ -56,12 +60,10 @@ const ToDo = () => {
   }
 
   const Handleremove = (index: number) => {
-    console.log(index)
     let newitems = [...Items]
     newitems.splice(index,1)
     SetItems(newitems)
     localStorage.setItem('tasks',JSON.stringify(newitems))
-    console.log(`length: ${Markedout.length}`)
     if (Markedout.length == 1) {
       SetMarkedout([])
       localStorage.setItem('status',JSON.stringify([]))
@@ -80,9 +82,15 @@ const ToDo = () => {
     SetMarkedout(updatedarray)
     localStorage.setItem('status', JSON.stringify(updatedarray))
   }
-  
+
+  const edit_task = (key: number) => {
+    setposition(key)
+    setedit(true)
+  }
+
   return (
     <div className="flex flex-col bg-slate-950 w-dvw h-full min-h-dvh">
+      {edit && <Edittask Items={Items} SetItems={SetItems} position={position} show={setedit}/>}
       <div className="grow flex justify-center items-center">
         <div className="min-h-[500px] h-auto w-2/6 rounded-2xl p-6 bg-white ">
           <img src={Todo} className="w-20 inline-block"/><span className="text-2xl font-extrabold">TO-DO-LIST</span>
@@ -95,7 +103,9 @@ const ToDo = () => {
             {Items.map((value: string, index: number) =><div key={index} className="flex justify-between items-center h-5 mt-3">
               <img  key={index} src={Markedout[index]? checklogo: circlelogo}/>
               <span onClick={() => Markout(index)} className=" inline-block w-4/5 text-black hover:cursor-pointer">{value}</span>
-              <div onClick={() => Handleremove(index)} className="inline-block rounded-full hover:bg-gray-400 p-2">
+              <div  onClick={() => edit_task(index)} className="inline-block rounded-full hover:bg-gray-400 hover:cursor-pointer p-2">
+              <img className="w-4" src={edit_icon}/></div>
+              <div onClick={() => Handleremove(index)} className="inline-block rounded-full hover:bg-gray-400 hover:cursor-pointer p-2">
               <img className="w-4" src={Trash_icon}/></div></div>) }
           </div>
         </div>
